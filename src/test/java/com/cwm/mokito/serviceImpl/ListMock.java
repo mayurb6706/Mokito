@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.BDDMockito.given;
 import java.util.List;
 
 import org.junit.Test;
@@ -61,5 +63,15 @@ public class ListMock {
 
 		when(list.get(anyInt())).thenThrow(new RuntimeException("Something"));
 		assertEquals(1, list.get(0));
+	}
+	
+	
+	@Test
+	public void testListUsingBdd() {
+		List list = mock(List.class);
+		
+		given(list.get(0)).willReturn("Laxman");
+		
+		assertThat(list.get(0),is("Laxman"));
 	}
 }
