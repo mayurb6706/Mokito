@@ -33,5 +33,16 @@ public class StudentServiceImpl {
 		
 		return stuents;
 	}
+	
+	
+	public void deleteStudent() {
+		List<Student> list = this.studentService.studentList();
+		
+		for(Student s :list) {
+			if(!s.getSchool().contains("abc")) {
+				list.remove(s);
+			}
+		}
+	}
 
 }

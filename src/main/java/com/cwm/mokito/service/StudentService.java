@@ -7,4 +7,6 @@ import com.cwm.mokito.entity.Student;
 public interface StudentService {
 
 	public List<Student> studentList();
+	
+	public void deleteStudent(Student user);
 }

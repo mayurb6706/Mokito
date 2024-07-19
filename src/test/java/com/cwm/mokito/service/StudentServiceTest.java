@@ -21,4 +21,9 @@ public class StudentServiceTest  implements StudentService{
 		return list;
 	}
 
+	@Override
+	public void deleteStudent(Student user) {
+	
+	}
+
 }

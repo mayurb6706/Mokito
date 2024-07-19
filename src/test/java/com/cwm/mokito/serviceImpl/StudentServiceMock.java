@@ -2,6 +2,8 @@ package com.cwm.mokito.serviceImpl;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -37,6 +39,36 @@ public class StudentServiceMock {
 	List<Student> students= studentServiceImpl.studentList();
 		
 		assertEquals(3, students.size());
+	}
+	
+	
+	
+	@Test
+	public void testStudentListRemove() {
+		
+		StudentServiceImpl studentServiceImpl= new StudentServiceImpl(studentService);
+		
+		//Created a list of students 
+		List<Student> list= new ArrayList<Student>();
+		list.add(new Student(1,"A","abc"));
+		list.add(new Student(2,"B","pqr"));
+		list.add(new Student(3,"C","abc"));
+		list.add(new Student(4,"E","abc"));
+		
+		when(studentService.studentList()).thenReturn(list);
+		
+	List<Student> students= studentServiceImpl.studentList();
+		
+		assertEquals(3, students.size());
+		
+		
+		//When
+		studentService.deleteStudent(list.get(2));
+		
+		//Then
+//		verify(studentService).deleteStudent(list.get(2));
+		
+		verify(studentService, never()).deleteStudent(list.get(3));
 	}
 	
 	
